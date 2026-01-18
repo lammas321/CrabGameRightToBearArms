@@ -9,6 +9,7 @@ namespace RightToBearArms
 {
     [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     [BepInDependency("lammas123.ChatCommands", BepInDependency.DependencyFlags.SoftDependency)]
+    [BepInDependency("lammas123.CrabDevKit", BepInDependency.DependencyFlags.SoftDependency)]
     public sealed class RightToBearArms : BasePlugin
     {
         public override void Load()
@@ -18,7 +19,7 @@ namespace RightToBearArms
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
-            if (ChatCommandsCompatibility.Enabled)
+            if (ChatCommandsCompatibility.Enabled) // ChatCommands depends on CrabDevKit. If we have ChatCommands, we have CrabDevKit
             {
                 Assembly asm = typeof(RightToBearArms).Assembly;
                 

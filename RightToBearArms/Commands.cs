@@ -1,4 +1,5 @@
 ﻿using ChatCommands;
+using CrabDevKit.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 using static ChatCommands.CommandArgumentParser;
@@ -141,7 +142,7 @@ namespace RightToBearArms
 
             foreach (ulong clientId in clientIds)
                 if (GameManager.Instance.activePlayers.ContainsKey(clientId) && !GameManager.Instance.activePlayers[clientId].dead)
-                    Utility.GiveItem(clientId, itemResult.result.itemID, ammo);
+                    GiveUtil.GiveItem(clientId, itemResult.result.itemID, ammo);
             return new BasicCommandResponse([], CommandResponseType.Private);
         }
     }
