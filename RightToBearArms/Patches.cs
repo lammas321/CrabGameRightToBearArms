@@ -11,9 +11,9 @@ namespace RightToBearArms
         {
             ItemManager.idToItem[0].itemName = "AK";
             ItemManager.idToItem[3].itemName = "Dual Shotgun";
-            ItemManager.idToItem[11].type = ItemType.Throwable;
+            ItemManager.idToItem[11].type = ItemData_ItemType.Throwable;
             ItemManager.idToItem[12].itemName = "Pizza Steve";
-            ItemManager.idToItem[12].type = ItemType.Throwable;
+            ItemManager.idToItem[12].type = ItemData_ItemType.Throwable;
         }
     }
 }

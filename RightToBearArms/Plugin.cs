@@ -7,9 +7,9 @@ using System.Reflection;
 
 namespace RightToBearArms
 {
-    [BepInPlugin($"lammas123.{MyPluginInfo.PLUGIN_NAME}", MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
     [BepInDependency("lammas123.ChatCommands", BepInDependency.DependencyFlags.SoftDependency)]
-    public class RightToBearArms : BasePlugin
+    public sealed class RightToBearArms : BasePlugin
     {
         public override void Load()
         {
@@ -28,9 +28,11 @@ namespace RightToBearArms
                 ChatCommandsCompatibility.RegisterCommand(itemsCommandType);
                 ChatCommandsCompatibility.RegisterCommand(giveCommandType);
             }
-            
-            Harmony.CreateAndPatchAll(typeof(Patches));
-            Log.LogInfo($"Loaded [{MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION}]");
+
+            Harmony harmony = new(MyPluginInfo.PLUGIN_NAME);
+            harmony.PatchAll(typeof(Patches));
+
+            Log.LogInfo($"Initialized [{MyPluginInfo.PLUGIN_NAME} {MyPluginInfo.PLUGIN_VERSION}]");
         }
     }
 }

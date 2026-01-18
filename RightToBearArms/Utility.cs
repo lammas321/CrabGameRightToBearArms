@@ -12,13 +12,13 @@ namespace RightToBearArms
             if (!GameManager.Instance.activePlayers.ContainsKey(clientId) || GameManager.Instance.activePlayers[clientId].dead || !ItemManager.idToItem.ContainsKey(itemId))
                 return;
 
-            if (ItemManager.idToItem[itemId].type == ItemType.Other || ItemManager.idToItem[itemId].type == ItemType.Ammo)
+            if (ItemManager.idToItem[itemId].type == ItemData_ItemType.Other || ItemManager.idToItem[itemId].type == ItemData_ItemType.Ammo)
             {
                 ServerSend.DropItem(clientId, itemId, SharedObjectManager.Instance.GetNextId(), ammo);
                 return;
             }
 
-            if (ItemManager.idToItem[itemId].type == ItemType.Melee || ItemManager.idToItem[itemId].type == ItemType.Throwable || ammo == ItemManager.idToItem[itemId].currentAmmo)
+            if (ItemManager.idToItem[itemId].type == ItemData_ItemType.Melee || ItemManager.idToItem[itemId].type == ItemData_ItemType.Throwable || ammo == ItemManager.idToItem[itemId].currentAmmo)
             {
                 GameServer.ForceGiveWeapon(clientId, itemId, SharedObjectManager.Instance.GetNextId());
                 return;
@@ -30,7 +30,7 @@ namespace RightToBearArms
         {
             int uniqueObjectId = SharedObjectManager.Instance.GetNextId();
             ServerSend.DropItem(clientId, itemId, uniqueObjectId, ammo);
-            if (ItemManager.idToItem[itemId].type == ItemType.Other || ItemManager.idToItem[itemId].type == ItemType.Ammo)
+            if (ItemManager.idToItem[itemId].type == ItemData_ItemType.Other || ItemManager.idToItem[itemId].type == ItemData_ItemType.Ammo)
                 yield break;
 
             while (!SharedObjectManager.Instance.field_Private_Dictionary_2_Int32_MonoBehaviourPublicInidBoskUnique_0.ContainsKey(uniqueObjectId))
